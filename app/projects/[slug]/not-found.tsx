@@ -10,7 +10,7 @@ export default function NotFound() {
         <div className="flex flex-col items-center justify-center min-h-screen px-4">
           <h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
           <p className="text-foreground/70 mb-8">
-            The project you're looking for doesn't exist.
+            The project you&apos;re looking for doesn&apos;t exist.
           </p>
           <Link
             href="/#projects"

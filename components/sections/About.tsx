@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ImageConveyor } from '@/components/ImageConveyor'
 import { pageTransition, transitionConfig, prefersReducedMotion } from '@/lib/transitions'
@@ -62,13 +63,14 @@ export function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <div className="space-y-4">
               <p className="text-[24px] text-foreground/80 sm:text-[24px] text-[17px]">
-                My name is <span className="font-bold">Rezhan Fatah</span>, I'm a
+                My name is <span className="font-bold">Rezhan Fatah</span>, I&apos;m a
                 <span className="font-bold"> Computer Science & Economics</span> double major
                 at <span className="inline-flex items-center gap-1 font-bold bg-[#0077b8] bg-opacity-100 rounded px-2 py-0.5 border-radius-5">
-                  <img
+                  <Image
                     src="/assets/brandeis-logo.png"
                     alt="Brandeis University Logo"
                     width={16}
+                    height={16}
                     className="inline-block mr-1"
                     style={{ minWidth: 16, minHeight: 16 }}
                   />
@@ -76,13 +78,13 @@ export function About() {
                 </span> in the Boston Area.
               </p>
               <p className="text-[24px] text-foreground/80 sm:text-[24px] text-[17px]">
-                Since I discovered my passion for technology in college, I've dived into the deep end by always building, going to hackathons, and learning new skills.
-                A new skill I'd like to pick up this year is AI automations.
+                Since I discovered my passion for technology in college, I&apos;ve dived into the deep end by always building, going to hackathons, and learning new skills.
+                A new skill I&apos;d like to pick up this year is AI automations.
               </p>
             </div>
             <div className="space-y-4">
               <p className="text-[24px] text-foreground/80 sm:text-[24px] text-[17px]">
-                When I'm not coding, you can find me in the kitchen, where I'll be cooking <span className="font-bold text-red-500">high protein</span> meals, and going to the gym.
+                When I&apos;m not coding, you can find me in the kitchen, where I&apos;ll be cooking <span className="font-bold text-red-500">high protein</span> meals, and going to the gym.
                 Contrary to academic steryotypes, I also really enjoy <span className="text-green-500 font-bold">touching grass and being outdoors</span>. Oh, and I also appreciate good architecture!
               </p>
               <p className="text-[24px] text-foreground/80 sm:text-[24px] text-[17px]">
@@ -100,7 +102,7 @@ export function About() {
             className="mt-12"
           >
             <h3 className="text-2xl sm:text-3xl font-bold text-center mb-6">
-              When I'm Not Coding
+              When I&apos;m Not Coding
             </h3>
             <ImageConveyor images={hobbyImages} speed={40} />
           </motion.div>
