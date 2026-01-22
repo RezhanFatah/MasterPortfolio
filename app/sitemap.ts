@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { siteConfig } from '@/lib/config'
 import { client } from '@/lib/sanity/client'
-import { projectsQuery } from '@/lib/sanity/queries'
+import { queryAllProjects } from '@/lib/sanity/queries'
 import { Project } from '@/lib/sanity/types'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Fetch all projects
     let projects: Project[] = []
     try {
-        projects = await client.fetch<Project[]>(projectsQuery)
+        projects = await client.fetch<Project[]>(queryAllProjects)
     } catch (error) {
         console.error('Error fetching projects for sitemap:', error)
     }
