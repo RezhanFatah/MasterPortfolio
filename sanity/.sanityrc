@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "project": {
+    "name": "Portfolio CMS"
+  },
+  "api": {
+    "projectId": "",
+    "dataset": "production"
+  }
+}
