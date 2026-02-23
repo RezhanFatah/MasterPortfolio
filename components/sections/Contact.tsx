@@ -1,10 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { z } from 'zod'
 import { siteConfig } from '@/lib/config'
-import { pageTransition, transitionConfig, prefersReducedMotion } from '@/lib/transitions'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -25,11 +23,6 @@ export function Contact() {
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  const [shouldAnimate, setShouldAnimate] = useState(true)
-
-  useEffect(() => {
-    setShouldAnimate(!prefersReducedMotion())
-  }, [])
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -86,33 +79,12 @@ export function Contact() {
   }
 
   return (
-    <motion.section
+    <section
       id="contact"
-      className="py-20 px-4 sm:px-6 lg:px-8"
-      {...(shouldAnimate
-        ? {
-          initial: {
-            opacity: 0,
-            scale: 0.98,
-            filter: 'blur(6px)',
-          },
-          whileInView: {
-            opacity: 1,
-            scale: 1,
-            filter: 'blur(0px)',
-          },
-          viewport: { once: true },
-          transition: transitionConfig,
-        }
-        : {})}
+      className="min-h-screen flex flex-col justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-y-auto"
     >
-      <div className="max-w-3xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+      <div className="max-w-3xl mx-auto w-full">
+        <div>
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
             Get In Touch
           </h2>
@@ -133,7 +105,7 @@ export function Contact() {
                 href={siteConfig.socialLinks.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-background border border-border rounded-lg hover:bg-muted hover:border-primary transition-all duration-300 font-medium inline-flex items-center gap-2"
+                className="px-6 py-3 bg-background border border-border rounded-lg hover:bg-muted hover:border-primary hover:bg-muted hover:border-primary font-medium inline-flex items-center gap-2"
               >
                 <svg
                   className="w-5 h-5"
@@ -153,7 +125,7 @@ export function Contact() {
                 href={siteConfig.socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 bg-background border border-border rounded-lg hover:bg-muted hover:border-primary transition-all duration-300 font-medium inline-flex items-center gap-2"
+                className="px-6 py-3 bg-background border border-border rounded-lg hover:bg-muted hover:border-primary hover:bg-muted hover:border-primary font-medium inline-flex items-center gap-2"
               >
                 <svg
                   className="w-5 h-5"
@@ -291,8 +263,8 @@ export function Contact() {
               </div>
             )}
           </form>
-        </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   )
 }

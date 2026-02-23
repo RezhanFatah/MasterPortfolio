@@ -16,12 +16,24 @@ const navItems = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
+      setScrolled(window.scrollY > 10)
+
+      // Determine active section
+      const sections = navItems.map((item) => item.href.slice(1))
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i])
+        if (el && window.scrollY >= el.offsetTop - 100) {
+          setActiveSection(sections[i])
+          break
+        }
+      }
     }
-    window.addEventListener('scroll', handleScroll)
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -36,38 +48,48 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${scrolled
-          ? 'bg-background/95 backdrop-blur-md border-b border-border shadow-lg'
-          : 'bg-background/90 backdrop-blur-sm'
-        }`}
+      className={`fixed top-0 left-0 right-0 z-[100] ${
+        scrolled
+          ? 'bg-background border-b border-border shadow-md'
+          : 'bg-transparent'
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link
             href="/"
-            className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+            className="text-xl font-bold text-foreground hover:text-primary"
             onClick={(e) => handleNavClick(e, '#home')}
           >
             {siteConfig.name}
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="text-foreground/80 hover:text-primary transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
-            <ThemeToggle />
+          <div className="hidden md:flex items-center space-x-1">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.slice(1)
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={`px-4 py-2 rounded-md text-sm font-medium ${
+                    isActive
+                      ? 'text-primary bg-primary/10'
+                      : 'text-foreground/70 hover:text-foreground hover:bg-muted'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              )
+            })}
+            <div className="ml-2">
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-4">
+          <div className="md:hidden flex items-center space-x-3">
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -76,7 +98,7 @@ export function Navbar() {
               aria-expanded={isOpen}
             >
               <svg
-                className="h-6 w-6"
+                className="h-5 w-5"
                 fill="none"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -97,18 +119,25 @@ export function Navbar() {
 
       {/* Mobile Navigation */}
       {isOpen && (
-        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md">
-          <div className="px-4 pt-2 pb-4 space-y-2">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="block px-4 py-2 rounded-lg text-foreground/80 hover:text-primary hover:bg-muted transition-colors"
-              >
-                {item.label}
-              </a>
-            ))}
+        <div className="md:hidden border-t border-border bg-background shadow-lg">
+          <div className="px-4 pt-2 pb-4 space-y-1">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.href.slice(1)
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={`block px-4 py-2 rounded-lg text-sm font-medium ${
+                    isActive
+                      ? 'text-primary bg-primary/10'
+                      : 'text-foreground/70 hover:text-foreground hover:bg-muted'
+                  }`}
+                >
+                  {item.label}
+                </a>
+              )
+            })}
           </div>
         </div>
       )}

@@ -51,20 +51,20 @@ export async function Projects() {
                   href={`/projects/${project.slug.current}`}
                   className="block group"
                 >
-                  <div className="bg-muted rounded-lg overflow-hidden border border-border hover:border-primary transition-all duration-300 h-full flex flex-col">
+                  <div className="bg-muted rounded-lg overflow-hidden border border-border hover:border-primary h-full flex flex-col">
                     {project.coverImage && (
                       <div className="relative w-full h-48 overflow-hidden">
                         <Image
                           src={urlFor(project.coverImage).width(600).height(400).url()}
                           alt={project.coverImage.alt || project.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          className="object-cover group-hover:scale-105"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                       </div>
                     )}
                     <div className="p-6 flex-1 flex flex-col">
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary">
                         {project.title}
                       </h3>
                       <p className="text-foreground/70 mb-4 flex-1">

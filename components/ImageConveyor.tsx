@@ -27,7 +27,7 @@ export function ImageConveyor({ images, speed = 20 }: ImageConveyorProps) {
         {duplicatedImages.map((image, index) => (
           <div
             key={index}
-            className="relative flex-shrink-0 w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-lg overflow-hidden border-2 border-border bg-muted shadow-lg hover:shadow-xl transition-shadow duration-300 group"
+            className="relative flex-shrink-0 w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-lg overflow-hidden border-2 border-border bg-muted shadow-lg group"
           >
             <Image
               src={image.src}
@@ -36,8 +36,8 @@ export function ImageConveyor({ images, speed = 20 }: ImageConveyorProps) {
               className="object-cover"
               sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, 256px"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="absolute bottom-0 left-0 right-0 p-3 text-white text-sm font-semibold opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100" />
+            <div className="absolute bottom-0 left-0 right-0 p-3 text-white text-sm font-semibold opacity-0 group-hover:opacity-100">
               {image.alt}
             </div>
           </div>

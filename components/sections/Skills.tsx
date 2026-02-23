@@ -1,9 +1,6 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { pageTransition, transitionConfig, prefersReducedMotion } from '@/lib/transitions'
-import { useEffect, useState } from 'react'
 
 export interface Skill {
   name: string
@@ -67,79 +64,47 @@ const skillCategories: SkillCategory[] = [
 ]
 
 export function Skills() {
-  const [shouldAnimate, setShouldAnimate] = useState(true)
-
-  useEffect(() => {
-    setShouldAnimate(!prefersReducedMotion())
-  }, [])
-
   return (
-    <motion.section
+    <section
       id="skills"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30"
-      {...(shouldAnimate
-        ? {
-            initial: {
-              opacity: 0,
-              scale: 0.98,
-              filter: 'blur(6px)',
-            },
-            whileInView: {
-              opacity: 1,
-              scale: 1,
-              filter: 'blur(0px)',
-            },
-            viewport: { once: true },
-            transition: transitionConfig,
-          }
-        : {})}
+      className="min-h-screen flex flex-col justify-center py-20 px-4 sm:px-6 lg:px-8 bg-muted/30 overflow-y-auto"
     >
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
-            Skills
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skillCategories.map((category, categoryIndex) => (
-              <motion.div
-                key={category.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-                className="bg-muted rounded-lg p-6 border border-border"
-              >
-                <h3 className="text-xl font-semibold mb-4 text-primary">
-                  {category.name}
-                </h3>
-                <div className="flex flex-wrap gap-3">
-                  {category.skills.map((skill) => (
-                    <span
-                      key={skill.name}
-                      className="inline-flex items-center gap-3 px-4 py-3 bg-background rounded-lg border border-border hover:border-primary transition-all duration-300 cursor-pointer hover:scale-110 hover:shadow-lg hover:-translate-y-1"
-                    >
-                      <Image
-                        src={skill.icon}
-                        alt={`${skill.name} icon`}
-                        width={28}
-                        height={28}
-                        className="flex-shrink-0 transition-transform duration-300"
-                        style={{ borderRadius: '4px' }}
-                      />
-                      <span className="text-sm font-medium">{skill.name}</span>
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+      <div className="max-w-7xl mx-auto w-full">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
+          Skills
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {skillCategories.map((category) => (
+            <div
+              key={category.name}
+              className="bg-muted rounded-lg p-6 border border-border"
+            >
+              <h3 className="text-xl font-semibold mb-4 text-primary">
+                {category.name}
+              </h3>
+              <div className="flex flex-wrap gap-3">
+                {category.skills.map((skill) => (
+                  <span
+                    key={skill.name}
+                    className="inline-flex items-center gap-3 px-4 py-3 bg-background rounded-lg border border-border hover:border-primary hover:scale-105 hover:shadow-lg hover:-translate-y-1 cursor-pointer"
+                    style={{ transition: 'transform 0.15s, box-shadow 0.15s, border-color 0.15s' }}
+                  >
+                    <Image
+                      src={skill.icon}
+                      alt={`${skill.name} icon`}
+                      width={28}
+                      height={28}
+                      className="flex-shrink-0"
+                      style={{ borderRadius: '4px' }}
+                    />
+                    <span className="text-sm font-medium">{skill.name}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </motion.section>
+    </section>
   )
 }

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 
 interface ProjectsClientProps {
   allTags: string[]
@@ -18,7 +17,7 @@ export function ProjectsClient({ allTags }: ProjectsClientProps) {
     <div className="flex flex-wrap gap-2 justify-center mb-8">
       <button
         onClick={() => setSelectedTag(null)}
-        className={`px-4 py-2 rounded-lg border transition-colors ${
+        className={`px-4 py-2 rounded-lg border ${
           selectedTag === null
             ? 'bg-primary text-white border-primary'
             : 'bg-muted border-border hover:bg-muted/80'
@@ -30,7 +29,7 @@ export function ProjectsClient({ allTags }: ProjectsClientProps) {
         <button
           key={tag}
           onClick={() => setSelectedTag(tag)}
-          className={`px-4 py-2 rounded-lg border transition-colors ${
+          className={`px-4 py-2 rounded-lg border ${
             selectedTag === tag
               ? 'bg-primary text-white border-primary'
               : 'bg-muted border-border hover:bg-muted/80'
