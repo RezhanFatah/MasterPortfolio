@@ -1,7 +1,4 @@
-'use client'
-
 import Image from 'next/image'
-import { Typewriter } from 'react-simple-typewriter'
 import { siteConfig } from '@/lib/config'
 
 export function Hero() {
@@ -14,34 +11,25 @@ export function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left: Text Content */}
           <div className="text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4">
-              <span className="text-foreground">
-                <Typewriter
-                  words={[siteConfig.name]}
-                  loop={1}
-                  typeSpeed={100}
-                  deleteSpeed={50}
-                  cursor
-                  cursorStyle="|"
-                />
-              </span>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-tight">
+              {siteConfig.name}
             </h1>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl text-primary mb-8 font-semibold">
-              {siteConfig.subtitle}
+            <h2 className="text-xl sm:text-2xl md:text-3xl text-primary mb-6 font-semibold">
+              Full Stack Developer
             </h2>
-            <p className="text-lg sm:text-xl text-foreground/70 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Building cool shit and learning
+            <p className="text-base sm:text-lg text-foreground/60 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              CS &amp; Economics at Brandeis. I build purposeful things for the web — from hackathon prototypes to polished products.
             </p>
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <a
                 href="#projects"
-                className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 font-medium"
+                className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 font-medium transition-colors"
               >
                 View Projects
               </a>
               <a
                 href="#contact"
-                className="px-6 py-3 border border-border rounded-lg hover:bg-muted font-medium"
+                className="px-6 py-3 border border-border rounded-lg hover:bg-muted font-medium transition-colors"
               >
                 Get In Touch
               </a>
@@ -50,16 +38,16 @@ export function Hero() {
 
           {/* Right: Profile Image */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-secondary to-accent opacity-20 blur-3xl" />
-              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/20 dark:border-primary/30 shadow-2xl">
+            <div className="relative w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-secondary to-accent opacity-15 blur-3xl" />
+              <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-primary/20 shadow-2xl">
                 <Image
                   src={siteConfig.profileImage}
                   alt={siteConfig.name}
                   fill
                   className="object-cover"
                   priority
-                  sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
+                  sizes="(max-width: 768px) 224px, (max-width: 1024px) 288px, 320px"
                 />
               </div>
             </div>

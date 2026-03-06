@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { z } from 'zod'
 import { siteConfig } from '@/lib/config'
+import { AnimateIn } from '@/components/AnimateIn'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -84,10 +85,13 @@ export function Contact() {
       className="min-h-screen flex flex-col justify-center py-20 px-4 sm:px-6 lg:px-8 overflow-y-auto"
     >
       <div className="max-w-3xl mx-auto w-full">
-        <div>
+        <AnimateIn>
           <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
             Get In Touch
           </h2>
+        </AnimateIn>
+        <AnimateIn delay={100}>
+        <div>
 
           {/* Email and Social Links */}
           <div className="text-center mb-8 space-y-4">
@@ -264,6 +268,7 @@ export function Contact() {
             )}
           </form>
         </div>
+        </AnimateIn>
       </div>
     </section>
   )

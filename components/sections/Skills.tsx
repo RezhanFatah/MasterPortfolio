@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { AnimateIn } from '@/components/AnimateIn'
 
 export interface Skill {
   name: string
@@ -70,9 +71,12 @@ export function Skills() {
       className="min-h-screen flex flex-col justify-center py-20 px-4 sm:px-6 lg:px-8 bg-muted/30 overflow-y-auto"
     >
       <div className="max-w-7xl mx-auto w-full">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
-          Skills
-        </h2>
+        <AnimateIn>
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12">
+            Skills
+          </h2>
+        </AnimateIn>
+        <AnimateIn delay={100}>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((category) => (
             <div
@@ -104,6 +108,7 @@ export function Skills() {
             </div>
           ))}
         </div>
+        </AnimateIn>
       </div>
     </section>
   )

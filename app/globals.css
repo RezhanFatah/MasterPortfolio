@@ -35,11 +35,14 @@ html {
 body {
     color: var(--foreground);
     background: var(--background);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading), var(--font-inter), sans-serif;
+    letter-spacing: -0.02em;
 }
 
 /* Custom scrollbar */
@@ -72,23 +75,16 @@ body {
     outline-offset: 2px;
 }
 
-/* Conveyor belt animation */
-@keyframes conveyor-scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
+/* Scroll-reveal animation */
+.animate-section {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
-.conveyor-track {
-    animation: conveyor-scroll 20s linear infinite;
-}
-
-.conveyor-track:hover {
-    animation-play-state: paused;
+.animate-section[data-visible='true'] {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Reduced motion */
