@@ -1,6 +1,5 @@
 import { createClient } from 'next-sanity'
 import type { ClientConfig } from 'next-sanity'
-import { draftMode } from 'next/headers'
 
 const config: ClientConfig = {
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
@@ -28,6 +27,7 @@ export function getPreviewClient() {
 
 // Get client based on draft mode status
 export async function getClient() {
+    const { draftMode } = await import('next/headers')
     const { isEnabled } = await draftMode()
 
     if (isEnabled && process.env.SANITY_API_TOKEN) {
